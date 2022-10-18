@@ -13,9 +13,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function createToDo(todo) {
   let li = document.createElement("li");
+  let pList = document.createElement("p");
+
   let rmvBtn = document.createElement("button");
   rmvBtn.textContent = " X";
   rmvBtn.addEventListener("click", handleDel);
+  // let editBtn = document.createElement("button");
+  // editBtn.textContent = "Edit";
+  // editBtn.addEventListener("click", (e) => {
+  //   console.log(e.target.parentNode.innerHTML);
+  // });
   let selectPriority = document.createElement("select");
   let highPriority = document.createElement("option");
   let mediumPriority = document.createElement("option");
@@ -23,8 +30,7 @@ function createToDo(todo) {
   //HANDLE SELECTING PRIORITY COLORS
   selectPriority.addEventListener("change", (e) => {
     // console.log(e.target.options[selectPriority.selectedIndex].value);
-    let x = taskList.getElementsByTagName("li");
-    for (let i = 0; i < x.length - 1; i++) {}
+
     if (e.target.options[selectPriority.selectedIndex].value === "High") {
       li.style.color = "red";
     } else if (
@@ -42,9 +48,11 @@ function createToDo(todo) {
   selectPriority.add(mediumPriority);
   selectPriority.add(lowPriority);
 
-  li.textContent = todo;
+  pList.textContent = todo;
+  li.appendChild(pList);
   li.appendChild(rmvBtn);
   li.appendChild(selectPriority);
+  // li.appendChild(editBtn);
   document.getElementById("tasks").appendChild(li);
 }
 
